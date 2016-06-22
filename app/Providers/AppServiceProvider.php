@@ -26,6 +26,9 @@ class AppServiceProvider extends ServiceProvider
     {
         //register route;
         require app_path('Http/routes.php');
+        //register helper
+        require app_path('Http/helpers.php');
+
         Blade::setRawTags("[[", "]]");
         Blade::setContentTags('<%', '%>');
         Blade::setEscapedContentTags('<%%', '%%>');
