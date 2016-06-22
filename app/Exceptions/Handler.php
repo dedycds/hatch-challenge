@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use ApiHttpException;
+use Guzzle\Http\Exception\ClientErrorResponseException;
+use Response;
 
 class Handler extends ExceptionHandler
 {
@@ -42,6 +45,23 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
+        
+        if (is_api()) { 
+            $content = [];
+            $status = 400;
+            if ($e instanceof NotFoundHttpException) {
+                $status = 404;
+            } elseif ($e instanceof ModelNotFoundException){
+                $status = 404;
+                $content = ['error' => $e->getMessage()];
+            } elseif($e instanceof ClientErrorResponseException) {
+                $status = 400;
+                $content = ['error' => $e->getResponse()];
+            }
+
+            return Response::make($content,$status);
+        }
+
         if ($e instanceof ModelNotFoundException) {
             $e = new NotFoundHttpException($e->getMessage(), $e);
         }

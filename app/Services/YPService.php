@@ -86,10 +86,11 @@ class YPService {
 	{
 		$params['key'] = $this->apiKey;
 		$params['format'] = 'json'; 
-		$request = $this->client->get($uri . "?" .http_build_query($params));
+		$this->client->setDefaultOption('query', $params);
+		
+		$request = $this->client->get($uri);
 		$response = $request->send();
-
-		return $response->json();
+		return $response->json(); 
 	}
 
 
