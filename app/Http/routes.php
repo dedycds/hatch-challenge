@@ -45,6 +45,7 @@ $router->group(
 		'prefix' => 'api',
 		'namespace' => 'App\Http\Controllers\Api',
 		'as' => 'api::',
+		'middleware' => 'auth.api'
 	], function($router) {
 
 		/**
