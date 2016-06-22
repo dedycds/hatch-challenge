@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Blade;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,5 +26,8 @@ class AppServiceProvider extends ServiceProvider
     {
         //register route;
         require app_path('Http/routes.php');
+        Blade::setRawTags("[[", "]]");
+        Blade::setContentTags('<%', '%>');
+        Blade::setEscapedContentTags('<%%', '%%>');
     }
 }

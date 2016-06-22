@@ -18,6 +18,28 @@ $router->get('/', function () {
     return view('welcome');
 });
 
+/**
+ * Route group for front end site
+ */
+$router->group([
+		'domian' => '',
+		'namespace' => 'App\Http\Controllers',
+		'as' => 'front::',
+	],
+	function($router){
+		$router->get('/docs/{slug?}', [
+			'uses' => 'DocController@display',
+			'as' => 'api.doc'
+		])->where([
+			'slug' => '[A-Za-z0-9-]+'
+		]);
+	}
+);
+
+
+/**
+ * Route group for API
+ */
 $router->group(
 	[
 		'prefix' => 'api',
