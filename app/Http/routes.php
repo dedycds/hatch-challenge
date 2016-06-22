@@ -57,14 +57,14 @@ $router->group(
 		/**
 		 * route delcaration for place
 		 */
-		$router->resource('place', 'PlaceController', [
+		$router->resource('places', 'PlaceController', [
 			'only' => ['show']
 		]);
 
 		/**
 		 * route declaration for place reviews
 		 */
-		$router->resource('place.reviews', 'PlaceReviewController', [
+		$router->resource('places.reviews', 'PlaceReviewController', [
 			'only' => ['index']
 		]);
 
