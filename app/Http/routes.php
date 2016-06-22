@@ -25,9 +25,26 @@ $router->group(
 		'as' => 'api::',
 	], function($router) {
 
-
+		/**
+		 * route for search endpoint
+		 */
 		$router->resource('search', 'SearchController', [
 			'only' => ['index']
 		]);
+		
+		/**
+		 * route delcaration for place
+		 */
+		$router->resource('place', 'PlaceController', [
+			'only' => ['show']
+		]);
+
+		/**
+		 * route declaration for place reviews
+		 */
+		$router->resource('place.reviews', 'PlaceReviewController', [
+			'only' => ['index']
+		]);
+
 	}
 );

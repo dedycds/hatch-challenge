@@ -7,6 +7,7 @@ class SearchController extends AbstractController
 {
 	public function index(Request $request)
 	{
-		return Response::json($request,200);
+		$s = $request->get('s');
+		return Response::json($this->yp->search($s, ''),200);
 	}
 }
