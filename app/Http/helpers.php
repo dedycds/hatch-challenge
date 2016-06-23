@@ -7,3 +7,9 @@ function is_api(){
     $url = $config->get('api.base_url');
     return (strpos($request->url(), $url) === 0);
 }
+
+function web_asset($path, $secure = false)
+{
+    return app('url')->asset("/assets/{$path}", $secure);
+}
+
