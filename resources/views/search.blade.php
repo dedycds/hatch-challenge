@@ -28,18 +28,20 @@
 						this._callSearch(event.target.value)
 					},
 					_callSearch : function(term) {
+						console.log('call search');
 						this.setState({data : [], loading : true});
 						
 						if(this.serverRequest)
 							this.serverRequest.abort();
 						
-						this.serverRequest = $.get('/api/search',{s : term, key : serverValues.api_key }, function(data) {
+						this.serverRequest = $.get('/api/search', {s : term, key : serverValues.api_key }, function(data) {
 							var data = data.searchResult.searchListings.searchListing;
-							this.setState({data : data, loading: false});
+							this.setState({data : data, loading : false});
 							
 						}.bind(this))
-						.fail(function() {
-							this.setState({data : null, loading: false});
+						.fail(function(response) {
+							if(response.status === 400)
+								this.setState({data : null, loading : false});
 						}.bind(this));			
 					},
 					render: function () {

@@ -94,14 +94,15 @@
 					},
 					render : function () {
 						var loading = this.state.loading;
-						var items = this.state.data;
+						var items = this.state.data || [];
 
 						var content = items.map(function(item) {
+							var date = new Date(item.reviewDate)
 							return (
 								<div> 
-									<p>rating : {item.rating} | reviewer : {item.reviewer} | date : {item.reviewDate}</p> 
-									<p><strong>Subject : {item.subject ? item.subject : "-" }</strong></p>
-									<p>{item.reviewBody ? item.reviewBody : "-" }</p>
+									<p>rating : {item.rating} | reviewer : {item.reviewer} | on : {date.toLocaleString()}</p> 
+									<p><strong>Subject : {(item.subject || "-") }</strong></p>
+									<p>{(item.reviewBody || "-")}</p>
 									<hr/>
 								</div>
 							);
