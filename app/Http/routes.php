@@ -15,7 +15,7 @@ $app = App::getFacadeApplication();
 $router = $app['router'];
 
 $router->get('/', function () {
-    return view('welcome');
+    return view('search');
 });
 
 /**
