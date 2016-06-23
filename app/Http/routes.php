@@ -18,6 +18,10 @@ $router->get('/', function () {
     return view('search');
 });
 
+$router->get('/place/{id}', function ($id) {
+    return view('place', compact('id'));
+})->where(['id' => '[0-9]+']);
+
 /**
  * Route group for front end site
  */
