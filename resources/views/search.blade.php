@@ -28,7 +28,6 @@
 						this._callSearch(event.target.value)
 					},
 					_callSearch : function(term) {
-						console.log('call search');
 						this.setState({data : [], loading : true});
 						
 						if(this.serverRequest)

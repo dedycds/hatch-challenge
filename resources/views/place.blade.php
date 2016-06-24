@@ -100,7 +100,6 @@
 
 						var content = items.map(function(item) {
 							var date = moment(item.reviewDate);
-							console.log(date);
 							return (
 								<div> 
 									<p>rating : {item.rating} | reviewer : {item.reviewer} | on : {date.format("MMM D YYYY HH:mm")}</p> 
