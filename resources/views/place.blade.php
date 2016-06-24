@@ -5,6 +5,8 @@
 	<script src="<% web_asset('js/react-dom.min.js') %>"></script>
 	<script src="<% web_asset('js/jquery-3.0.0.min.js') %>"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+
 
 @stop
 @section('content')
@@ -97,10 +99,11 @@
 						var items = this.state.data || [];
 
 						var content = items.map(function(item) {
-							var date = new Date(item.reviewDate)
+							var date = moment(item.reviewDate);
+							console.log(date);
 							return (
 								<div> 
-									<p>rating : {item.rating} | reviewer : {item.reviewer} | on : {date.toLocaleString()}</p> 
+									<p>rating : {item.rating} | reviewer : {item.reviewer} | on : {date.format("MMM D YYYY HH:mm")}</p> 
 									<p><strong>Subject : {(item.subject || "-") }</strong></p>
 									<p>{(item.reviewBody || "-")}</p>
 									<hr/>
